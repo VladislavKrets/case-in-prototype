@@ -13,7 +13,7 @@ export default function ReportBar(props){
             indexBy={props.indexBy}
             margin={{ top: 30, right: 30, bottom: 30, left: 50 }}
             padding={padding}
-            colors={{ scheme: 'nivo' }}
+            colors={{ scheme: 'paired' }}
             borderColor={{
                 from: 'color',
                 modifiers: [

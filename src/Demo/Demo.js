@@ -34,32 +34,26 @@ export default function Demo(props) {
                 </Form>
             </Accordion.Body>
         </Accordion.Item>
-        {/*<Accordion.Item eventKey="1">*/}
-        {/*    <Accordion.Header>Подстанции</Accordion.Header>*/}
-        {/*    <Accordion.Body>*/}
-
-        {/*    </Accordion.Body>*/}
-        {/*</Accordion.Item>*/}
     </Accordion>;
 
     const linksListElement = <>
         <Link to={"/demo"} className={'link-bar'}>
-            <BsColumnsGap width={30}/>
+            <BsColumnsGap className={'link-bar-icon'}/>
         </Link>
         <Link to={"/demo/sheets"} className={'link-bar'}>
-            <BsBell width={30}/>
+            <BsBell className={'link-bar-icon'}/>
         </Link>
         <Link to={"/demo/positions"} className={'link-bar'}>
-            <BsJoystick width={30}/>
+            <BsJoystick className={'link-bar-icon'}/>
         </Link>
         <Link to={"/demo/sheets"} className={'link-bar'}>
-            <BsCup width={30}/>
+            <BsCup className={'link-bar-icon'}/>
         </Link>
         <Link to={"/demo/video"} className={'link-bar'}>
-            <BsCameraVideo width={30}/>
+            <BsCameraVideo className={'link-bar-icon'}/>
         </Link>
         <Link to={"/demo/sheets"} className={'link-bar'}>
-            <BsInfoSquare width={30}/>
+            <BsInfoSquare className={'link-bar-icon'}/>
         </Link>
     </>
 

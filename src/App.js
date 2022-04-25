@@ -87,7 +87,131 @@ function App() {
     ]);
 
     const [objects, setObjects] = useState([
-        {id: 1, name: 'Магистральный газопровод “Сила Сибири”'},
+        {
+            id: 1, name: 'Магистральный газопровод “Сила Сибири”',
+            data: {
+                dataConsumptionHour: [
+                    {
+                        "month": "Декабрь",
+                        "consumption": 3.24,
+                    },
+                    {
+                        "month": "Январь",
+                        "consumption": 3.17,
+                    },
+                    {
+                        "month": "Февраль",
+                        "consumption": 2.29,
+                    },
+                    {
+                        "month": "Март",
+                        "consumption": 15.6,
+                    },
+                ],
+                dataObjects: [
+                    {
+                        "id": "Нет данных",
+                        "data": [
+                            {
+                                "x": "Объекты",
+                                "y": 3
+                            },
+                        ]
+                    },
+                    {
+                        "id": "Со сливами",
+                        "data": [
+                            {
+                                "x": "Объекты",
+                                "y": 0
+                            },
+                        ]
+                    },
+                    {
+                        "id": "В порядке",
+                        "data": [
+                            {
+                                "x": "Объекты",
+                                "y": 3
+                            },
+                        ]
+                    },
+                ],
+                dataConsumptionLiters: [
+                    {
+                        "month": "Декабрь",
+                        "consumption": 31,
+                    },
+                    {
+                        "month": "Январь",
+                        "consumption": 50,
+                    },
+                    {
+                        "month": "Февраль",
+                        "consumption": 28,
+                    },
+                    {
+                        "month": "Март",
+                        "consumption": 15,
+                    },
+                ],
+                dataWorkMinutes: [
+                    {
+                        "month": "Декабрь",
+                        "minutes": 2,
+                    },
+                    {
+                        "month": "Январь",
+                        "minutes": 15,
+                    },
+                    {
+                        "month": "Февраль",
+                        "minutes": 3,
+                    },
+                    {
+                        "month": "Март",
+                        "minutes": 6,
+                    },
+                ],
+                dataSinkVolume: [
+                    {
+                        "month": "Декабрь",
+                        "volume": 0,
+                    },
+                    {
+                        "month": "Январь",
+                        "volume": 686,
+                    },
+                    {
+                        "month": "Февраль",
+                        "volume": 0,
+                    },
+                    {
+                        "month": "Март",
+                        "volume": 0,
+                    },
+                ],
+                dataConsumptionCurrent: [
+                    {
+                        "month": "Декабрь",
+                        "consumption": 3.24,
+                    },
+                    {
+                        "month": "Январь",
+                        "consumption": 0.88,
+                    },
+                    {
+                        "month": "Февраль",
+                        "consumption": 2.29,
+                    },
+                    {
+                        "month": "Март",
+                        "consumption": 1.01,
+                    },
+                ]
+
+            }
+        },
         {id: 2, name: 'Газопровод-отвод на ГРС “Врангель”'},
         {id: 3, name: 'Система магистральных газопроводов “Бованенково-Ухта”'},
         {id: 4, name: 'Система магистральных газопроводов “Ухта-Торжок”'},
@@ -99,8 +223,10 @@ function App() {
         <Router>
             <Routes>
                 <Route path="login" element={<Auth/>}/>
-                <Route path="demo" element={<Demo transport={transport} setTransport={setTransport} objects={objects}/>}>
-                    <Route path={"reports/:id"} element={<Reports objects={objects}/>}/>
+                <Route path="demo"
+                       element={<Demo transport={transport} setTransport={setTransport} objects={objects}/>}>
+                    <Route path={"reports/:id"}
+                           element={<Reports objects={objects}/>}/>
                     <Route path={"positions"} element={<Maps transport={transport}/>}/>
                     <Route path={"sheets"} element={<SpreadSheets transport={transport}/>}/>
                     <Route path={"video"} element={<Video/>}/>

@@ -5,6 +5,7 @@ export default function ReportRadialBar(props) {
     return <div className={'graph-wrapper'}>
         <ResponsiveRadialBar
             data={props.data}
+            colors={{ scheme: 'paired' }}
             valueFormat=">-.2f"
             padding={0.4}
             cornerRadius={2}

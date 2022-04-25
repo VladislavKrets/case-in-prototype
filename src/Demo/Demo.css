@@ -115,6 +115,11 @@
     display: none;
 }
 
+.link-bar-icon{
+    width: 30px;
+    height: 30px;
+}
+
 @media (max-width: 850px) {
     .object-item {
         width: 100vw;
@@ -159,5 +164,9 @@
     }
     .demo-header-content{
         display: flex;
+    }
+    .link-bar-icon{
+        width: 20px;
+        height: 20px;
     }
 }
