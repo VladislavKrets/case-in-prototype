@@ -8,7 +8,7 @@ import {MdOutlineSettings} from 'react-icons/md'
 
 export default function Demo(props) {
     let navigate = useNavigate();
-    const accordionElement = <Accordion alwaysOpen activeKey={"0"}>
+    const accordionElement = <Accordion alwaysOpen defaultActiveKey={"0"}>
         <Accordion.Item eventKey="0">
             <Accordion.Header>Транспорт</Accordion.Header>
             <Accordion.Body>
