@@ -24,6 +24,7 @@ import Reports from "./Reports/Reports";
 import Maps from "./Maps/Maps";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SpreadSheets from "./SpreadSheets/SpreadSheets";
+import Video from "./Video/Video";
 
 ChartJS.register(
     CategoryScale,
@@ -102,6 +103,7 @@ function App() {
                     <Route path={"reports/:id"} element={<Reports objects={objects}/>}/>
                     <Route path={"positions"} element={<Maps transport={transport}/>}/>
                     <Route path={"sheets"} element={<SpreadSheets transport={transport}/>}/>
+                    <Route path={"video"} element={<Video/>}/>
                 </Route>
                 <Route path="" element={<Main/>}/>
             </Routes>

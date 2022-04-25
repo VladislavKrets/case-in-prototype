@@ -55,7 +55,7 @@ export default function Demo(props) {
         <Link to={"/demo/sheets"} className={'link-bar'}>
             <BsCup width={30}/>
         </Link>
-        <Link to={"/demo/sheets"} className={'link-bar'}>
+        <Link to={"/demo/video"} className={'link-bar'}>
             <BsCameraVideo width={30}/>
         </Link>
         <Link to={"/demo/sheets"} className={'link-bar'}>
