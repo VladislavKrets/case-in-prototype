@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {GoogleMap, useJsApiLoader, Marker, InfoWindow} from '@react-google-maps/api';
-import transportSVG from "../assets/transport.svg"
+import transportSVG from "../assets/record2.svg"
 
 function Maps(props) {
     const containerStyle = {
