@@ -1,0 +1,39 @@
+.graph-wrapper {
+    height: 300px;
+    width: 550px;
+}
+
+.report-wrapper{
+    padding: 20px;
+}
+
+.reports-object-title{
+    color: #20305E;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.report-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@media (max-width: 850px) {
+    .graph-wrapper {
+        height: 300px;
+        width: 370px;
+        font-size: 15px;
+    }
+
+    .reports-object-title{
+        font-size: 20px;
+        text-align: center;
+    }
+    .report-wrapper{
+        padding: 0;
+    }
+    .report-list {
+        justify-content: center;
+    }
+}
