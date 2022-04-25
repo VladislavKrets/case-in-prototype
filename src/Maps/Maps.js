@@ -94,7 +94,7 @@ function Maps(props) {
                                     visible={popups[index]}>
                                     <div>
                                         <div style={{textAlign: 'center', fontWeight: 'bold'}}>{item.name}</div>
-                                        <div style={{textAlign: 'center'}}>{item.description}</div>
+                                        <div style={{whiteSpace: "pre-line"}}>{item.description}</div>
                                     </div>
                                 </InfoWindow>}
                             </Marker>
