@@ -11,7 +11,7 @@ export default function ReportBar(props){
             data={props.data}
             keys={props.keys}
             indexBy={props.indexBy}
-            margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+            margin={{ top: 30, right: 30, bottom: 30, left: 30 }}
             padding={padding}
             colors={{ scheme: 'nivo' }}
             borderColor={{

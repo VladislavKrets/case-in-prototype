@@ -19,6 +19,7 @@
     justify-content: space-between;
 }
 
+
 @media (max-width: 850px) {
     .graph-wrapper {
         height: 300px;
@@ -35,5 +36,9 @@
     }
     .report-list {
         justify-content: center;
+    }
+
+    .graph-wrapper div svg g{
+        /*transform: translate(40, 50) !important;*/
     }
 }
