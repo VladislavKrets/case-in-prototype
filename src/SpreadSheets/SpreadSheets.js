@@ -41,8 +41,8 @@ export default function SpreadSheets(props) {
     return <div style={{
         display: 'flex',
         width: '100%',
-        height: 'calc(100vh - 105px)',
-        maxHeight: 'calc(100vh - 105px)',
+        height: 'calc(100vh - 65px)',
+        maxHeight: 'calc(100vh - 65px)',
         overflow: 'auto'
     }}>
         <Spreadsheet data={data} readOnly={true} />
