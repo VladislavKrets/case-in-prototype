@@ -53,6 +53,24 @@
 .object-container{
     padding-left: 100px;
 }
+.offcanvas-menu-bar {
+    width: 300px;
+}
+.menu-object-item {
+    background-color: #ECF4FF;
+    color: #20305E;
+    cursor: pointer;
+    border-radius: 27px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 12px;
+    word-break: normal;
+    white-space: normal;
+    overflow-wrap: break-spaces;
+    text-align: center;
+}
 
 .object-title{
     color: #20305E;
@@ -130,6 +148,10 @@
         white-space: normal;
         overflow-wrap: break-spaces;
         text-align: center;
+    }
+
+    .offcanvas-menu-bar {
+        width: 80vw !important;
     }
 
     .object-container{

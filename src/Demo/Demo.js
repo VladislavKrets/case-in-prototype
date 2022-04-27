@@ -87,6 +87,9 @@ export default function Demo(props) {
         <div className={'demo-wrapper'}>
             {window.location.pathname !== "/demo" && <>
                 <div className={'desktop-left-bar'}>
+                    <a className={'link-bar'} style={{cursor: 'pointer'}}>
+                        <GiHamburgerMenu className={'link-bar-icon'} onClick={handleObjectsShow}/>
+                    </a>
                     {linksListElement}
                 </div>
                 {!window.location.pathname.match(/^\/demo\/reports\/\d+$/)
@@ -121,12 +124,12 @@ export default function Demo(props) {
                 {accordionElement}
             </Offcanvas.Body>
         </Offcanvas>
-        <Offcanvas show={objectsShow} onHide={handleObjectsClose} placement={'start'} style={{width: '80vw'}}>
+        <Offcanvas show={objectsShow} onHide={handleObjectsClose} placement={'start'} className={'offcanvas-menu-bar'}>
             <Offcanvas.Body>
-                <div className={'object-container'}  style={{paddingTop: '30px'}}>
+                <div style={{paddingTop: '30px'}}>
                     {
                         props.objects.map((item, index) => {
-                            return <div className={'object-item'}
+                            return <div className={'menu-object-item'}
                                         onClick={() => {
                                             navigate("reports/" + (index + 1), {replace: false})
                                             handleObjectsClose();
