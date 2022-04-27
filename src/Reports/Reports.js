@@ -3,20 +3,18 @@ import {ResponsiveBar} from "@nivo/bar";
 import ReportBar from "../ReportBar/ReportBar";
 import ReportRadialBar from "../ReportRadialBar/ReportRadialBar";
 import './Reports.css'
-import {useParams} from "react-router";
+import {Outlet, useParams} from "react-router";
 
 export default function Reports(props) {
     let {id} = useParams();
 
-
     const object = props.objects[id - 1];
-    console.log(object)
-    return <div className={'report-wrapper'}>
+    return window.location.pathname === "/demo/reports/" + id ? <div className={'report-wrapper'}>
         <div className={'reports-object-title'}>
             {object.name}
         </div>
         <div style={{display: 'flex', justifyContent: 'center'}}>
-            {object.data ?
+            {object.data.dataObjects ?
                 <div className={'report-list'}>
                 <ReportRadialBar data={object.data.dataObjects}/>
                 <ReportBar data={object.data.dataConsumptionHour} keys={['consumption']} indexBy={'month'}
@@ -31,5 +29,5 @@ export default function Reports(props) {
                 </div> : <div style={{paddingTop: '40px', fontSize: '1.2em'}}>Данные отсутствуют</div>
             }
         </div>
-    </div>
+    </div> : <Outlet/>
 }

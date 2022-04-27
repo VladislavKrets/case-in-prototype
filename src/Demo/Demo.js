@@ -5,23 +5,28 @@ import './Demo.css'
 import {useNavigate} from "react-router-dom";
 import {BsColumnsGap, BsBell, BsJoystick, BsCup, BsCameraVideo, BsInfoSquare} from 'react-icons/bs';
 import {MdOutlineSettings} from 'react-icons/md'
+import {useParams} from "react-router";
 
 export default function Demo(props) {
     let navigate = useNavigate();
+    let {id} = useParams();
+
     const accordionElement = <Accordion alwaysOpen defaultActiveKey={"0"}>
         <Accordion.Item eventKey="0">
             <Accordion.Header>Транспорт</Accordion.Header>
             <Accordion.Body>
                 <Form>
                     {
-                        props.transport.map((item, index) => {
+                        id && props.objects[id - 1].transport.length > 0 ? props.objects[id - 1].transport.map((item, index) => {
                             return <div key={index}
                                         style={{borderBottom: '.2rem solid #ececec', padding: '12px'}}>
                                 <Form.Check
                                     onChange={e => {
-                                        const transport = [...props.transport];
+                                        const objects = [...props.objects];
+                                        const transport = [...objects[id - 1].transport];
                                         transport[e.target.name].isMarker = e.target.checked
-                                        props.setTransport(transport);
+                                        objects[id - 1].transport = transport;
+                                        props.setObjects(objects);
                                     }}
                                     type={'checkbox'}
                                     label={item.name}
@@ -29,7 +34,7 @@ export default function Demo(props) {
                                     name={index}
                                 />
                             </div>
-                        })
+                        }) : <div style={{textAlign: 'center'}}>Нет данных</div>
                     }
                 </Form>
             </Accordion.Body>
@@ -40,19 +45,19 @@ export default function Demo(props) {
         <Link to={"/demo"} className={'link-bar'}>
             <BsColumnsGap className={'link-bar-icon'}/>
         </Link>
-        <Link to={"/demo/sheets"} className={'link-bar'}>
+        <Link to={`/demo/reports/${id}/sheets`} className={'link-bar'}>
             <BsBell className={'link-bar-icon'}/>
         </Link>
-        <Link to={"/demo/positions"} className={'link-bar'}>
+        <Link to={`/demo/reports/${id}/positions`} className={'link-bar'}>
             <BsJoystick className={'link-bar-icon'}/>
         </Link>
-        <Link to={"/demo/sheets"} className={'link-bar'}>
+        <Link to={`/demo/reports/${id}/sheets`} className={'link-bar'}>
             <BsCup className={'link-bar-icon'}/>
         </Link>
-        <Link to={"/demo/video"} className={'link-bar'}>
+        <Link to={`/demo/reports/${id}/video`} className={'link-bar'}>
             <BsCameraVideo className={'link-bar-icon'}/>
         </Link>
-        <Link to={"/demo/sheets"} className={'link-bar'}>
+        <Link to={`/demo/reports/${id}/sheets`} className={'link-bar'}>
             <BsInfoSquare className={'link-bar-icon'}/>
         </Link>
     </>
@@ -65,7 +70,7 @@ export default function Demo(props) {
     return <div style={{minHeight: '100vh', display: 'flex', flexFlow: 'column'}}>
         <header className={'demo-header'}>
             {window.location.pathname !== "/demo"
-            && !window.location.pathname.includes("/demo/reports") && <div className={'demo-header-content'}>
+            && !window.location.pathname.match(/^\/demo\/reports\/\d+$/) && <div className={'demo-header-content'}>
                 <div></div>
                 <div></div>
                 <MdOutlineSettings style={{width: '30px', height: '30px'}} fill={'white'} onClick={handleShow}/>
@@ -77,7 +82,7 @@ export default function Demo(props) {
                 <div className={'desktop-left-bar'}>
                     {linksListElement}
                 </div>
-                {!window.location.pathname.includes("/demo/reports")
+                {!window.location.pathname.match(/^\/demo\/reports\/\d+$/)
                 && <div className={'accordion-desktop'}>
                     {accordionElement}
                 </div>

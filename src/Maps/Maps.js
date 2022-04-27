@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {GoogleMap, useJsApiLoader, Marker, InfoWindow} from '@react-google-maps/api';
 import transportSVG from "../assets/record2.svg"
+import {useParams} from "react-router";
 
 function Maps(props) {
+    let {id} = useParams();
     const containerStyle = {
         width: '100%',
         height: '100%',
@@ -49,11 +51,11 @@ function Maps(props) {
             }, 800);
     }, [map])
 
-    const [popups, setPopups] = useState(props.transport.map(item => false));
+    const [popups, setPopups] = useState(props.objects[id - 1].transport.map(item => false));
 
     useEffect(() => {
         setPopups(popups.map(item => false))
-    }, [props.transport])
+    }, [props.objects[id - 1].transport])
 
     return <div style={{flex: '1 1 auto'}}>
         {
@@ -66,7 +68,7 @@ function Maps(props) {
                     onUnmount={onUnmount}
                 >
                     {
-                        props.transport.filter(item => item.isMarker).map((item, index) => {
+                        props.objects[id - 1].transport.filter(item => item.isMarker).map((item, index) => {
                             return <Marker
                                 key={index}
                                 position={{lat: item.lat, lng: item.lng}}
