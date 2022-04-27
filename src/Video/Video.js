@@ -4,7 +4,7 @@ import './Video.css'
 export default function Video(props) {
     return <div className={'video-container'}>
         <div className={'video'}>
-            Здесь что-то связанное с видео
+            Для начала работы выберите камеры
         </div>
     </div>
 }
