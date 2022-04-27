@@ -5,6 +5,7 @@ import './Demo.css'
 import {useNavigate} from "react-router-dom";
 import {BsColumnsGap, BsBell, BsJoystick, BsCup, BsCameraVideo, BsInfoSquare} from 'react-icons/bs';
 import {MdOutlineSettings} from 'react-icons/md'
+import {GiHamburgerMenu} from 'react-icons/gi'
 import {useParams} from "react-router";
 
 export default function Demo(props) {
@@ -62,18 +63,24 @@ export default function Demo(props) {
         </Link>
     </>
 
-    const [show, setShow] = useState(false);
+    const [transportShow, setTransportShow] = useState(false);
+    const handleTransportClose = () => setTransportShow(false);
+    const handleTransportShow = () => setTransportShow(true);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [objectsShow, setObjectsShow] = useState(false);
+    const handleObjectsClose = () => setObjectsShow(false);
+    const handleObjectsShow = () => setObjectsShow(true);
 
     return <div style={{minHeight: '100vh', display: 'flex', flexFlow: 'column'}}>
         <header className={'demo-header'}>
             {window.location.pathname !== "/demo"
-            && !window.location.pathname.match(/^\/demo\/reports\/\d+$/) && <div className={'demo-header-content'}>
+            &&  <div className={'demo-header-content'}>
+                <GiHamburgerMenu style={{width: '30px', height: '30px'}} fill={'white'} onClick={handleObjectsShow}/>
                 <div></div>
-                <div></div>
-                <MdOutlineSettings style={{width: '30px', height: '30px'}} fill={'white'} onClick={handleShow}/>
+                {
+                    !window.location.pathname.match(/^\/demo\/reports\/\d+$/) ? <MdOutlineSettings style={{width: '30px', height: '30px'}} fill={'white'}
+                                       onClick={handleTransportShow}/> : <div/>
+                }
             </div>
             }
         </header>
@@ -106,12 +113,29 @@ export default function Demo(props) {
             }
             <Outlet/>
         </div>
-        <Offcanvas show={show} onHide={handleClose} placement={'bottom'} style={{height: '70vh'}}>
+        <Offcanvas show={transportShow} onHide={handleTransportClose} placement={'bottom'} style={{height: '70vh'}}>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Выберите объекты для отображения</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
                 {accordionElement}
+            </Offcanvas.Body>
+        </Offcanvas>
+        <Offcanvas show={objectsShow} onHide={handleObjectsClose} placement={'start'} style={{width: '80vw'}}>
+            <Offcanvas.Body>
+                <div className={'object-container'}  style={{paddingTop: '30px'}}>
+                    {
+                        props.objects.map((item, index) => {
+                            return <div className={'object-item'}
+                                        onClick={() => {
+                                            navigate("reports/" + (index + 1), {replace: false})
+                                            handleObjectsClose();
+                                        }}>
+                                {item.name}
+                            </div>
+                        })
+                    }
+                </div>
             </Offcanvas.Body>
         </Offcanvas>
         {window.location.pathname !== "/demo" && <>

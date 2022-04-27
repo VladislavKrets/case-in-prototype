@@ -122,7 +122,7 @@
 
 @media (max-width: 850px) {
     .object-item {
-        width: 100vw;
+        width: 100%;
         box-sizing: border-box;
         padding: 5px;
         font-size: 12px;
@@ -134,6 +134,9 @@
 
     .object-container{
         padding: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
     .object-title {
         padding: 10px;
