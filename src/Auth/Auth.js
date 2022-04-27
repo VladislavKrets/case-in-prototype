@@ -8,7 +8,7 @@ export default function Auth(props) {
             alignItems: 'center', justifyContent: 'center'}}>
             <div style={{width: '300px'}}>
                 <form style={{display: 'flex', flexDirection: 'column'}}>
-                    <div style={{textAlign: 'center', fontWeight: 'bold', color: '#20305E', fontSize: '40px', paddingBottom: '50px'}}>
+                    <div style={{textAlign: 'center', fontWeight: 'bold', color: '#20305E', fontSize: '35px', paddingBottom: '50px', fontFamily: "Montserrat-ExtraBold, sans-serif"}}>
                         АВТОРИЗАЦИЯ
                     </div>
                     <div className={'input-text-wrapper'} style={{marginBottom: '20px'}}>

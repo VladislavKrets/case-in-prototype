@@ -3,7 +3,15 @@ import {Link, Outlet} from "react-router-dom";
 import {Accordion, Form, Offcanvas} from "react-bootstrap";
 import './Demo.css'
 import {useNavigate} from "react-router-dom";
-import {BsColumnsGap, BsBell, BsJoystick, BsCup, BsCameraVideo, BsInfoSquare} from 'react-icons/bs';
+import {
+    BsGearFill,
+    BsBellFill,
+    BsFillFileEarmarkBarGraphFill,
+    BsCameraVideoFill,
+    BsInfoCircleFill,
+    BsPinMapFill
+} from 'react-icons/bs';
+import {ImTruck} from 'react-icons/im';
 import {MdOutlineSettings} from 'react-icons/md'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {useParams} from "react-router";
@@ -34,6 +42,19 @@ export default function Demo(props) {
                                     checked={item.isMarker}
                                     name={index}
                                 />
+                                    {
+                                        window.location.pathname === `/demo/reports/${id}/video` &&
+                                        item.cameras.map((camera, camIndex) => {
+                                            return <div key={camIndex}
+                                                        style={{paddingLeft: '12px'}}>
+                                                <Form.Check
+                                                    type={'checkbox'}
+                                                    label={camera}
+                                                    name={camIndex}
+                                                />
+                                            </div>
+                                        })
+                                    }
                             </div>
                         }) : <div style={{textAlign: 'center'}}>Нет данных</div>
                     }
@@ -44,22 +65,22 @@ export default function Demo(props) {
 
     const linksListElement = <>
         <Link to={`/demo/reports/${id}`} className={'link-bar'}>
-            <BsColumnsGap className={'link-bar-icon'}/>
+            <BsInfoCircleFill className={'link-bar-icon'}/>
         </Link>
-        <Link to={`/demo/reports/${id}/sheets`} className={'link-bar'}>
-            <BsBell className={'link-bar-icon'}/>
+        <Link to={`/demo/reports/${id}/notifications`} className={'link-bar'}>
+            <BsBellFill className={'link-bar-icon'}/>
+        </Link>
+        <Link to={`/demo/reports/${id}/transport`} className={'link-bar'}>
+            <ImTruck className={'link-bar-icon'}/>
         </Link>
         <Link to={`/demo/reports/${id}/positions`} className={'link-bar'}>
-            <BsJoystick className={'link-bar-icon'}/>
-        </Link>
-        <Link to={`/demo/reports/${id}/sheets`} className={'link-bar'}>
-            <BsCup className={'link-bar-icon'}/>
+            <BsPinMapFill className={'link-bar-icon'}/>
         </Link>
         <Link to={`/demo/reports/${id}/video`} className={'link-bar'}>
-            <BsCameraVideo className={'link-bar-icon'}/>
+            <BsCameraVideoFill className={'link-bar-icon'}/>
         </Link>
         <Link to={`/demo/reports/${id}/sheets`} className={'link-bar'}>
-            <BsInfoSquare className={'link-bar-icon'}/>
+            <BsFillFileEarmarkBarGraphFill className={'link-bar-icon'}/>
         </Link>
     </>
 
@@ -74,25 +95,30 @@ export default function Demo(props) {
     return <div style={{minHeight: '100vh', display: 'flex', flexFlow: 'column'}}>
         <header className={'demo-header'}>
             {window.location.pathname !== "/demo"
-            &&  <div className={'demo-header-content'}>
+            && <div className={'demo-header-content'}>
                 <GiHamburgerMenu style={{width: '30px', height: '30px'}} fill={'white'} onClick={handleObjectsShow}/>
                 <div></div>
                 {
-                    !window.location.pathname.match(/^\/demo\/reports\/\d+$/) ? <MdOutlineSettings style={{width: '30px', height: '30px'}} fill={'white'}
-                                       onClick={handleTransportShow}/> : <div/>
+                    !window.location.pathname.match(/^\/demo\/reports\/\d+$/) ?
+                        <BsGearFill style={{width: '30px', height: '30px'}} fill={'white'}
+                                           onClick={handleTransportShow}/> : <div/>
                 }
             </div>
             }
+            <div className={'demo-header-content-desktop'}>
+                <a className={'link-bar'} style={{cursor: 'pointer', marginBottom: 0}}>
+                    <GiHamburgerMenu className={'link-bar-icon'} onClick={handleObjectsShow}/>
+                </a>
+            </div>
         </header>
         <div className={'demo-wrapper'}>
             {window.location.pathname !== "/demo" && <>
                 <div className={'desktop-left-bar'}>
-                    <a className={'link-bar'} style={{cursor: 'pointer'}}>
-                        <GiHamburgerMenu className={'link-bar-icon'} onClick={handleObjectsShow}/>
-                    </a>
                     {linksListElement}
                 </div>
                 {!window.location.pathname.match(/^\/demo\/reports\/\d+$/)
+                    && !window.location.pathname.match(/^\/demo\/reports\/\d+\/notifications$/)
+                && !window.location.pathname.match(/^\/demo\/reports\/\d+\/transport/)
                 && <div className={'accordion-desktop'}>
                     {accordionElement}
                 </div>

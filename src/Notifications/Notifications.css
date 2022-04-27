@@ -1,0 +1,24 @@
+.notification-alert{
+    width: 400px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.notification-datetime{
+    font-size: 20px;
+    color: #20305E;
+}
+
+@media (max-width: 850px) {
+    .notification-alert{
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    .notification-datetime{
+        font-size: 15px;
+    }
+}

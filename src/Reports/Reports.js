@@ -26,6 +26,8 @@ export default function Reports(props) {
                 <ReportBar data={object.data.dataSinkVolume} keys={['volume']} indexBy={'month'} legend={'Объем сливов (литры)'}/>
                 <ReportBar data={object.data.dataConsumptionCurrent} keys={['consumption']} indexBy={'month'}
                            legend={'Расход топлива за текущий месяц (на моточас)'}/>
+                    <div className={'graph-wrapper'}/>
+                    <div className={'graph-wrapper'}/>
                 </div> : <div style={{paddingTop: '40px', fontSize: '1.2em'}}>Данные отсутствуют</div>
             }
         </div>

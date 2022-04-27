@@ -1,6 +1,6 @@
 .graph-wrapper {
     height: 300px;
-    width: 550px;
+    width: 400px;
 }
 
 .report-wrapper{
@@ -9,6 +9,7 @@
 }
 
 .reports-object-title{
+    font-family: Montserrat-ExtraBold, sans-serif;
     color: #20305E;
     font-size: 36px;
     font-weight: bold;
@@ -20,6 +21,25 @@
     justify-content: space-between;
 }
 
+/*.report-list:last-child::after {*/
+/*    content: "";*/
+/*    flex: auto;*/
+/*}*/
+
+@media (max-width: 1300px) {
+    .graph-wrapper {
+        height: 400px;
+        width: 500px;
+    }
+
+}
+
+@media (max-width: 1105px) {
+    .graph-wrapper {
+        height: 300px;
+        width: 400px;
+    }
+}
 
 @media (max-width: 850px) {
     .graph-wrapper {
@@ -39,7 +59,4 @@
         justify-content: center;
     }
 
-    .graph-wrapper div svg g{
-        /*transform: translate(40, 50) !important;*/
-    }
 }

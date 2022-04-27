@@ -1,7 +1,13 @@
 @font-face {
   font-family: montserrat;
-  src:local("./assets/montserrat.ttf");
+  src: url("./assets/montserrat.ttf") format("opentype");
 }
+
+@font-face {
+  font-family: Montserrat-ExtraBold;
+  src: url("./assets/Montserrat-ExtraBold.ttf") format("opentype");
+}
+
 body {
   background-color: #f7fafc !important;
   font-family: montserrat, sans-serif !important;
