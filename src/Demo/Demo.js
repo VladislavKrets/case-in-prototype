@@ -43,7 +43,7 @@ export default function Demo(props) {
     </Accordion>;
 
     const linksListElement = <>
-        <Link to={"/demo"} className={'link-bar'}>
+        <Link to={`/demo/reports/${id}`} className={'link-bar'}>
             <BsColumnsGap className={'link-bar-icon'}/>
         </Link>
         <Link to={`/demo/reports/${id}/sheets`} className={'link-bar'}>
