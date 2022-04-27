@@ -11,13 +11,15 @@ export default function Transports(props){
                 Выберите транспортное средство
             </div>
             {
-                props.objects[id - 1].transport.map((item, index) => {
+                props.objects[id - 1].transport.length > 0 ? props.objects[id - 1].transport.map((item, index) => {
                     return <div className={'object-item'}
                                 key={index}
                                 onClick={() => navigate("" + (index + 1), {replace: false})}>
                         {item.name}
                     </div>
-                })
+                }) : <div style={{textAlign: 'center', paddingTop: '40px', width: '100%'}}>
+                    Нет данных
+                </div>
             }
         </div>
     </div>
