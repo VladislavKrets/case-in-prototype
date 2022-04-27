@@ -73,4 +73,11 @@
         width: 100%;
         margin: 0 0 10px;
     }
+
+    .transport-percent-data{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

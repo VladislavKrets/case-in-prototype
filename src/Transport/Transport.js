@@ -136,13 +136,15 @@ export default function Transport(props) {
                         <div className={'transport-props-title'}>
                             Время наработки до капитального ремонта
                         </div>
-                        <div className={'volume-percent'}>
-                            <div style={{
-                                padding: '10px 0',
-                                boxSizing: 'borderBox',
-                                width: '20%',
-                                backgroundColor: '#20305E'
-                            }}>
+                        <div className={'transport-percent-data'}>
+                            <div className={'volume-percent'}>
+                                <div style={{
+                                    padding: '10px 0',
+                                    boxSizing: 'borderBox',
+                                    width: '20%',
+                                    backgroundColor: '#20305E'
+                                }}>
+                                </div>
                             </div>
                         </div>
                     </div>
