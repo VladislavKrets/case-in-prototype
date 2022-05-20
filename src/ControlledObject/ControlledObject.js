@@ -7,6 +7,7 @@ import {
     BsInfoCircleFill,
     BsPinMapFill
 } from "react-icons/bs/index";
+import {IoAddSharp} from "react-icons/io5"
 import React, {useState} from "react";
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import {Accordion, Form, Offcanvas} from "react-bootstrap";
@@ -58,6 +59,41 @@ export default function ControlledObject(props) {
                 </Form>
             </Accordion.Body>
         </Accordion.Item>
+        {
+            window.location.pathname === `/demo/reports/${id}/positions` &&
+            <Accordion.Item eventKey="1">
+                <Accordion.Header>Точки</Accordion.Header>
+                <Accordion.Body>
+                    <Form>
+                        <div style={{
+                            borderBottom: '.2rem solid #ececec',
+                            padding: '12px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            color: '#20305E',
+                            cursor: 'pointer'
+                        }} onClick={() => {
+                            props.setPointsAdditionState(true);
+                        }}>
+                            <div>Добавить</div>
+                            <IoAddSharp/>
+                        </div>
+                        {
+                            props.userMapPoints.map((item, index) => {
+                                return <div key={index}
+                                            style={{borderBottom: '.2rem solid #ececec', padding: '12px'}}>
+                                    <Form.Check
+                                        type={'checkbox'}
+                                        label={item.lat + " " + item.lng}
+                                        name={index}
+                                    />
+                                </div>
+                            })
+                        }
+                    </Form>
+                </Accordion.Body>
+            </Accordion.Item>
+        }
     </Accordion>;
 
     const linksListElement = <>

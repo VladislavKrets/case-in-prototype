@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {GoogleMap, useJsApiLoader, Marker, InfoWindow} from '@react-google-maps/api';
+import {GoogleMap, useJsApiLoader, Marker, InfoWindow, DirectionsRenderer} from '@react-google-maps/api';
 import transportSVG from "../assets/record2.svg"
 import {useParams} from "react-router";
 
@@ -8,6 +8,7 @@ function Maps(props) {
     const containerStyle = {
         width: '100%',
         height: '100%',
+        cursor: props.isPointsAdditionState ? 'crosshair' : undefined
     };
 
     const [center, setCenter] = useState({
@@ -57,15 +58,59 @@ function Maps(props) {
         setPopups(popups.map(item => false))
     }, [props.objects[id - 1].transport])
 
+    const [directions, setDirections] = useState([])
+
+    const getDirections = (origin, destination) => {
+        const directionsService = new window.google.maps.DirectionsService();
+
+        if (origin !== null && destination !== null) {
+            directionsService.route(
+                {
+                    origin: origin,
+                    destination: destination,
+                    travelMode: window.google.maps.TravelMode.DRIVING
+                },
+                (result, status) => {
+                    if (status === window.google.maps.DirectionsStatus.OK) {
+                        const newDirections = [...directions]
+                        newDirections.push(result)
+                        setDirections(newDirections)
+                    } else {
+                        console.error(`error fetching directions ${result}`);
+                    }
+                }
+            );
+        } else {
+            console.log('Please mark your destination in the map first!');
+        }
+    };
+
+    const onMapClick = (event) => {
+        if (props.isPointsAdditionState) {
+            const lat = event.latLng.lat();
+            const lng = event.latLng.lng();
+            const userMapPoints = [...props.userMapPoints]
+            userMapPoints.push({lat: lat, lng: lng})
+            props.setUserMapPoints(userMapPoints)
+            props.setPointsAdditionState(false);
+            if (userMapPoints.length > 1) {
+                getDirections(userMapPoints[userMapPoints.length - 2], userMapPoints[userMapPoints.length - 1])
+            }
+        }
+    }
+
     return <div style={{flex: '1 1 auto'}}>
         {
             isLoaded ? (
                 <GoogleMap
+                    options={{draggableCursor: props.isPointsAdditionState ? 'crosshair' : ""}}
+                    draggable={!props.isPointsAdditionState}
                     mapContainerStyle={containerStyle}
                     center={center}
                     zoom={zoom}
                     onLoad={onLoad}
                     onUnmount={onUnmount}
+                    onClick={onMapClick}
                 >
                     {
                         props.objects[id - 1].transport.filter(item => item.isMarker).map((item, index) => {
@@ -96,13 +141,32 @@ function Maps(props) {
                                     visible={popups[index]}>
                                     <div>
                                         <div style={{textAlign: 'center', fontWeight: 'bold'}}>{item.name}</div>
-                                        <div style={{whiteSpace: "pre-line", lineHeight: '2em'}}>{item.description}</div>
+                                        <div
+                                            style={{whiteSpace: "pre-line", lineHeight: '2em'}}>{item.description}</div>
                                     </div>
                                 </InfoWindow>}
                             </Marker>
                         })
                     }
-                    <></>
+                    {
+                        props.userMapPoints.map((item, index) => {
+                            return <Marker
+                                key={index}
+                                position={{lat: item.lat, lng: item.lng}}>
+                            </Marker>
+                        })
+                    }
+                    {
+                        directions.map((item, index) => {
+                            return <DirectionsRenderer
+                                key={index}
+                                directions={item}
+                                defaultOptions={{
+                                    suppressMarkers: true
+                                }}
+                            />
+                        })
+                    }
                 </GoogleMap>
             ) : <></>
         }

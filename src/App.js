@@ -290,20 +290,37 @@ function App() {
             ]
         },
         {id: 2, name: 'Газопровод-отвод на ГРС “Врангель”', transport: [], data: {}, notifications: []},
-        {id: 3, name: 'Система магистральных газопроводов “Бованенково-Ухта”', transport: [], data: {}, notifications: []},
+        {
+            id: 3,
+            name: 'Система магистральных газопроводов “Бованенково-Ухта”',
+            transport: [],
+            data: {},
+            notifications: []
+        },
         {id: 4, name: 'Система магистральных газопроводов “Ухта-Торжок”', transport: [], data: {}, notifications: []},
         {id: 5, name: 'Харасавэйское газоконденсатное месторождение', transport: [], data: {}, notifications: []},
         {id: 6, name: 'Уренгойское нефтегазоконденсатное месторождение', transport: [], data: {}, notifications: []},
     ])
 
+    const [userMapPoints, setUserMapPoints] = useState([]);
+    const [isPointsAdditionState, setPointsAdditionState] = useState(false);
+
     return (
         <Router>
             <Routes>
                 <Route path="login" element={<Auth/>}/>
-                <Route path="demo/reports" element={<ControlledObject objects={objects} setObjects={setObjects}/>}>
+                <Route path="demo/reports" element={<ControlledObject objects={objects} setObjects={setObjects}
+                                                                      userMapPoints={userMapPoints}
+                                                                      isPointsAdditionState={isPointsAdditionState}
+                                                                      setPointsAdditionState={setPointsAdditionState}/>}>
                     <Route path={":id"}
                            element={<Reports objects={objects}/>}>
-                        <Route path={"positions"} element={<Maps objects={objects}/>}/>
+                        <Route path={"positions"} element={
+                            <Maps objects={objects} userMapPoints={userMapPoints}
+                                  setUserMapPoints={setUserMapPoints}
+                                  isPointsAdditionState={isPointsAdditionState}
+                                  setPointsAdditionState={setPointsAdditionState}/>
+                        }/>
                         <Route path={"sheets"} element={<SpreadSheets objects={objects}/>}/>
                         <Route path={"video"} element={<Video/>}/>
                         <Route path={"notifications"} element={<Notifications objects={objects}/>}/>
