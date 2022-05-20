@@ -10,7 +10,7 @@ import {
 import {IoAddSharp} from "react-icons/io5"
 import React, {useState} from "react";
 import {Link, Outlet, useNavigate} from "react-router-dom";
-import {Accordion, Form, Offcanvas} from "react-bootstrap";
+import {Accordion, Form, Offcanvas, Toast, ToastContainer} from "react-bootstrap";
 import {useParams} from "react-router";
 import {ImTruck} from "react-icons/im/index";
 import {TiDelete} from 'react-icons/ti'
@@ -18,6 +18,14 @@ import {TiDelete} from 'react-icons/ti'
 export default function ControlledObject(props) {
     let navigate = useNavigate();
     let {id} = useParams();
+
+    const [transportShow, setTransportShow] = useState(false);
+    const handleTransportClose = () => setTransportShow(false);
+    const handleTransportShow = () => setTransportShow(true);
+
+    const [objectsShow, setObjectsShow] = useState(false);
+    const handleObjectsClose = () => setObjectsShow(false);
+    const handleObjectsShow = () => setObjectsShow(true);
 
     const accordionElement = <Accordion alwaysOpen defaultActiveKey={"0"}>
         <Accordion.Item eventKey="0">
@@ -76,6 +84,7 @@ export default function ControlledObject(props) {
                             alignItems: 'center'
                         }} onClick={() => {
                             props.setPointsAdditionState(true);
+                            handleTransportClose();
                         }}>
                             <div>Добавить</div>
                             <IoAddSharp style={{width: '30px', height: '30px', color: '#20305E'}}/>
@@ -128,14 +137,6 @@ export default function ControlledObject(props) {
             <BsFillFileEarmarkBarGraphFill className={'link-bar-icon'}/>
         </Link>
     </>
-
-    const [transportShow, setTransportShow] = useState(false);
-    const handleTransportClose = () => setTransportShow(false);
-    const handleTransportShow = () => setTransportShow(true);
-
-    const [objectsShow, setObjectsShow] = useState(false);
-    const handleObjectsClose = () => setObjectsShow(false);
-    const handleObjectsShow = () => setObjectsShow(true);
 
     return <div style={{minHeight: '100vh', display: 'flex', flexFlow: 'column'}}>
         <header className={'demo-header'}>
@@ -193,6 +194,11 @@ export default function ControlledObject(props) {
                 </div>
             </Offcanvas.Body>
         </Offcanvas>
+        {/*<div style={{position: 'absolute', display: props.isPointsAdditionState? 'block' : 'none', top: "0", left: "50%", transformX: "translate(-50%)"}}>*/}
+        {/*    <Toast show={props.isPointsAdditionState} className="p-3" delay={3000} autohide>*/}
+        {/*        <Toast.Body>Выберите точку на карте</Toast.Body>*/}
+        {/*    </Toast>*/}
+        {/*</div>*/}
         <div className={'epic-placeholder'}/>
         <div className={'epic-bar'}>
             {linksListElement}
