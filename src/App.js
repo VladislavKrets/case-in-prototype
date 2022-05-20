@@ -311,6 +311,7 @@ function App() {
                 <Route path="login" element={<Auth/>}/>
                 <Route path="demo/reports" element={<ControlledObject objects={objects} setObjects={setObjects}
                                                                       userMapPoints={userMapPoints}
+                                                                      setUserMapPoints={setUserMapPoints}
                                                                       isPointsAdditionState={isPointsAdditionState}
                                                                       setPointsAdditionState={setPointsAdditionState}/>}>
                     <Route path={":id"}

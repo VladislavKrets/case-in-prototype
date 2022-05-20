@@ -13,6 +13,7 @@ import {Link, Outlet, useNavigate} from "react-router-dom";
 import {Accordion, Form, Offcanvas} from "react-bootstrap";
 import {useParams} from "react-router";
 import {ImTruck} from "react-icons/im/index";
+import {TiDelete} from 'react-icons/ti'
 
 export default function ControlledObject(props) {
     let navigate = useNavigate();
@@ -71,22 +72,33 @@ export default function ControlledObject(props) {
                             display: 'flex',
                             justifyContent: 'space-between',
                             color: '#20305E',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            alignItems: 'center'
                         }} onClick={() => {
                             props.setPointsAdditionState(true);
                         }}>
                             <div>Добавить</div>
-                            <IoAddSharp/>
+                            <IoAddSharp style={{width: '30px', height: '30px', color: '#20305E'}}/>
                         </div>
                         {
                             props.userMapPoints.map((item, index) => {
                                 return <div key={index}
-                                            style={{borderBottom: '.2rem solid #ececec', padding: '12px'}}>
-                                    <Form.Check
-                                        type={'checkbox'}
-                                        label={item.lat + " " + item.lng}
-                                        name={index}
-                                    />
+                                            style={{
+                                                borderBottom: '.2rem solid #ececec',
+                                                padding: '12px',
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                alignItems: 'center'
+                                            }}>
+                                    <div>
+                                        {item.lat + " " + item.lng}
+                                    </div>
+                                    <div style={{cursor: 'pointer'}} onClick={() => {
+                                        const newUserMapPoints = props.userMapPoints.filter((item, pointIndex) => pointIndex !== index)
+                                        props.setUserMapPoints(newUserMapPoints)
+                                    }}>
+                                        <TiDelete style={{width: '30px', height: '30px', color: 'red'}}/>
+                                    </div>
                                 </div>
                             })
                         }

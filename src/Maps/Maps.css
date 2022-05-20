@@ -1,3 +1,7 @@
 .leaflet-routing-alt {
     display: none;
 }
+
+.map-crosshair .leaflet-pane, .map-crosshair .leaflet-container{
+    cursor: crosshair !important;
+}

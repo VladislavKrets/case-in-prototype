@@ -34,7 +34,7 @@ function Maps(props) {
     const containerStyle = {
         width: '100%',
         height: '100%',
-        cursor: props.isPointsAdditionState ? 'crosshair' : undefined
+        cursor: props.isPointsAdditionState ? 'crosshair !important' : undefined
     };
 
     const [center, setCenter] = useState([
@@ -89,7 +89,7 @@ function Maps(props) {
 
     }
 
-    return <div style={{flex: '1 1 auto'}}>
+    return <div style={{flex: '1 1 auto'}} className={props.isPointsAdditionState ? 'map-crosshair' : undefined}>
         <MapContainer
             center={center}
             zoom={5}
