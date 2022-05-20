@@ -28,6 +28,7 @@ import Video from "./Video/Video";
 import Notifications from "./Notifications/Notifications";
 import Transports from "./Transports/Transports";
 import Transport from "./Transport/Transport";
+import ControlledObject from "./ControlledObject/ControlledObject";
 
 ChartJS.register(
     CategoryScale,
@@ -299,9 +300,8 @@ function App() {
         <Router>
             <Routes>
                 <Route path="login" element={<Auth/>}/>
-                <Route path="demo"
-                       element={<Demo objects={objects} setObjects={setObjects}/>}>
-                    <Route path={"reports/:id"}
+                <Route path="demo/reports" element={<ControlledObject objects={objects} setObjects={setObjects}/>}>
+                    <Route path={":id"}
                            element={<Reports objects={objects}/>}>
                         <Route path={"positions"} element={<Maps objects={objects}/>}/>
                         <Route path={"sheets"} element={<SpreadSheets objects={objects}/>}/>
@@ -310,6 +310,9 @@ function App() {
                         <Route path={"transport/:transportId"} element={<Transport objects={objects}/>}/>
                         <Route path={"transport"} element={<Transports objects={objects}/>}/>
                     </Route>
+                </Route>
+                <Route path="demo"
+                       element={<Demo objects={objects} setObjects={setObjects}/>}>
                 </Route>
                 <Route path="" element={<Main/>}/>
             </Routes>
