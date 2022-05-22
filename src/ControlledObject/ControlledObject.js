@@ -32,8 +32,9 @@ export default function ControlledObject(props) {
         props.fileUpload(event.target.files[0]);
     }
 
-    const accordionElement = <Accordion alwaysOpen defaultActiveKey={"0"}>
-        <Accordion.Item eventKey="0">
+    const accordionElement = <Accordion alwaysOpen
+                                        defaultActiveKey={window.location.pathname !== `/demo/reports/${id}/sheets` ? "0" : "1"}>
+        {window.location.pathname !== `/demo/reports/${id}/sheets` && <Accordion.Item eventKey="0">
             <Accordion.Header>Транспорт</Accordion.Header>
             <Accordion.Body>
                 <Form>
@@ -73,6 +74,7 @@ export default function ControlledObject(props) {
                 </Form>
             </Accordion.Body>
         </Accordion.Item>
+        }
         {
             window.location.pathname === `/demo/reports/${id}/positions` &&
             <Accordion.Item eventKey="1">
