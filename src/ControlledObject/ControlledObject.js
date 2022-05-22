@@ -140,7 +140,7 @@ export default function ControlledObject(props) {
                 <Accordion.Header>Аналитика</Accordion.Header>
                 <Accordion.Body>
                     <Form>
-                        <div>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
                             <Button variant="primary" style={{
                                 width: '250px',
                                 height: '60px',
@@ -148,7 +148,7 @@ export default function ControlledObject(props) {
                                 whiteSpace: 'normal'
                             }}>Прогнозирование расхода топлива</Button>
                         </div>
-                        <div>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
                             <Button variant="primary" style={{
                                 width: '250px',
                                 height: '60px',
