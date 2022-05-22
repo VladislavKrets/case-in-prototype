@@ -134,6 +134,9 @@ export default function ControlledObject(props) {
         }
     </Accordion>;
     const linksListElement = <>
+        <a className={'link-bar link-bar-desktop'} style={{cursor: 'pointer', marginTop: '20px'}}>
+            <GiHamburgerMenu className={'link-bar-icon'} onClick={handleObjectsShow}/>
+        </a>
         <Link to={`/demo/reports/${id}`} className={'link-bar'}>
             <BsInfoCircleFill className={'link-bar-icon'}/>
         </Link>
@@ -164,12 +167,6 @@ export default function ControlledObject(props) {
                         <BsGearFill style={{width: '30px', height: '30px'}} fill={'white'}
                                     onClick={handleTransportShow}/> : <div/>
                 }
-            </div>
-
-            <div className={'demo-header-content-desktop'}>
-                <a className={'link-bar'} style={{cursor: 'pointer', marginBottom: 0}}>
-                    <GiHamburgerMenu className={'link-bar-icon'} onClick={handleObjectsShow}/>
-                </a>
             </div>
         </header>
         <div className={'demo-wrapper'}>

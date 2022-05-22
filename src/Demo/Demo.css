@@ -11,7 +11,7 @@
 }
 
 .demo-header{
-    display: flex;
+    display: none;
     height: 60px;
     background-color: #081178;
     justify-content: space-between;
@@ -150,6 +150,9 @@
 }
 
 @media (max-width: 850px) {
+    .link-bar-desktop{
+        display: none;
+    }
     .object-item {
         width: 100%;
         box-sizing: border-box;
@@ -196,6 +199,7 @@
         display: block;
     }
     .demo-header {
+        display: flex;
         height: 40px;
     }
     .demo-header-content{

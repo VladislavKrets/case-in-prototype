@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import LuckySheet from "../LuckySheet/LuckySheet";
 import RedirectJsRouter from "../RedirectJsRouter";
+import './SpreadSheets.css'
 
 export default function SpreadSheets(props) {
     let {id} = useParams();
@@ -41,13 +42,7 @@ export default function SpreadSheets(props) {
         setData(updateSheets())
     }, [props.objects[id - 1].transport])
 
-    return <div style={{
-        display: 'flex',
-        width: '100%',
-        maxWidth: '100%',
-        height: 'calc(100vh - 65px)',
-        maxHeight: 'calc(100vh - 65px)',
-    }}>
+    return <div className={'demo-spreadsheets'}>
         {/*<Spreadsheet data={data} readOnly={true} />*/}
         <LuckySheet luckyConfig={props.luckyConfig} setLuckyConfig={props.setLuckyConfig}/>
     </div>

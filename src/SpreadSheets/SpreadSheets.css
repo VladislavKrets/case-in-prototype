@@ -1,0 +1,7 @@
+.demo-spreadsheets{
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    height: calc(100vh - 65px);
+    max-height: calc(100vh - 65px);
+}
