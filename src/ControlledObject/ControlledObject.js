@@ -32,8 +32,10 @@ export default function ControlledObject(props) {
         props.fileUpload(event.target.files[0]);
     }
 
-    const camCheck = (e) => {
-        props.setCamChecked(e.target.checked)
+    const camCheck = (e, index) => {
+        const newCamChecked = [...props.isCamChecked]
+        newCamChecked[index] = e.target.checked
+        props.setCamChecked(newCamChecked)
     }
 
     const accordionElement = <Accordion alwaysOpen
@@ -68,7 +70,9 @@ export default function ControlledObject(props) {
                                                 type={'checkbox'}
                                                 label={camera}
                                                 name={camIndex}
-                                                onChange={camCheck}
+                                                onChange={(e) => {
+                                                    camCheck(e, camIndex + (index * 3))
+                                                }}
                                             />
                                         </div>
                                     })

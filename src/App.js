@@ -292,7 +292,43 @@ function App() {
                     isPositive: true,
                     title: 'Строительство на Участке 5 завершено',
                     description: 'Строительство линейной части газопровода на Участке 5 завершено'
-                }
+                },
+                {
+                    datetime: '22.04.2021 12:45',
+                    isPositive: false,
+                    title: 'Превышение скорости',
+                    description: 'Превышение скорости на транспортном средстве Mercedes-3341 Самосвал 1'
+                },
+                {
+                    datetime: '22.06.2021 16:50',
+                    isPositive: true,
+                    title: 'Строительство на Участке 5 завершено',
+                    description: 'Строительство линейной части газопровода на Участке 5 завершено'
+                },
+                {
+                    datetime: '22.04.2021 16:51',
+                    isPositive: false,
+                    title: 'Превышение скорости',
+                    description: 'Превышение скорости на транспортном средстве Mercedes-3341 Самосвал 1'
+                },
+                {
+                    datetime: '22.06.2021 16:52',
+                    isPositive: true,
+                    title: 'Строительство на Участке 5 завершено',
+                    description: 'Строительство линейной части газопровода на Участке 5 завершено'
+                },
+                {
+                    datetime: '22.04.2021 17:57',
+                    isPositive: false,
+                    title: 'Превышение скорости',
+                    description: 'Превышение скорости на транспортном средстве Mercedes-3341 Самосвал 1'
+                },
+                {
+                    datetime: '22.06.2021 18:01',
+                    isPositive: true,
+                    title: 'Строительство на Участке 5 завершено',
+                    description: 'Строительство линейной части газопровода на Участке 5 завершено'
+                },
             ]
         },
         {id: 2, name: 'Газопровод-отвод на ГРС “Врангель”', transport: [], data: {}, notifications: []},
@@ -376,7 +412,7 @@ function App() {
         setLuckyConfig(newLuckyConfig)
     }
 
-    const [isCamChecked, setCamChecked] = useState(false)
+    const [isCamChecked, setCamChecked] = useState(Array.of(Array(15).keys()).map(() => false))
 
     return (
         <Router>
