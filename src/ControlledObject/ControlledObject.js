@@ -10,7 +10,7 @@ import {
 import {IoAddSharp} from "react-icons/io5"
 import React, {useState} from "react";
 import {Link, Outlet, useNavigate} from "react-router-dom";
-import {Accordion, Form, Offcanvas, Toast, ToastContainer} from "react-bootstrap";
+import {Accordion, Form, Offcanvas, Toast, ToastContainer, Button} from "react-bootstrap";
 import {useParams} from "react-router";
 import {ImTruck} from "react-icons/im/index";
 import {TiDelete} from 'react-icons/ti'
@@ -127,7 +127,36 @@ export default function ControlledObject(props) {
                 <Accordion.Body>
                     <Form>
                         <Form.Label>Загрузите .xlsx файл</Form.Label>
-                        <Form.Control type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={onFileChange}/>
+                        <Form.Control type="file"
+                                      accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                      onChange={onFileChange}/>
+                    </Form>
+                </Accordion.Body>
+            </Accordion.Item>
+        }
+        {
+            window.location.pathname === `/demo/reports/${id}/sheets` &&
+            <Accordion.Item eventKey="2">
+                <Accordion.Header>Аналитика</Accordion.Header>
+                <Accordion.Body>
+                    <Form>
+                        <div>
+                            <Button variant="primary" style={{
+                                width: '250px',
+                                height: '60px',
+                                wordBreak: 'break-word',
+                                whiteSpace: 'normal'
+                            }}>Прогнозирование расхода топлива</Button>
+                        </div>
+                        <div>
+                            <Button variant="primary" style={{
+                                width: '250px',
+                                height: '60px',
+                                marginTop: '20px',
+                                wordBreak: 'break-word',
+                                whiteSpace: 'normal'
+                            }}>Прогнозирование расхода двигателя</Button>
+                        </div>
                     </Form>
                 </Accordion.Body>
             </Accordion.Item>
