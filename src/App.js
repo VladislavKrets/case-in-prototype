@@ -376,6 +376,8 @@ function App() {
         setLuckyConfig(newLuckyConfig)
     }
 
+    const [isCamChecked, setCamChecked] = useState(false)
+
     return (
         <Router>
             <Routes>
@@ -388,6 +390,8 @@ function App() {
                                                                       getEnginesResult={getEnginesResult}
                                                                       isPointsAdditionState={isPointsAdditionState}
                                                                       fileUpload={fileUpload}
+                                                                      isCamChecked={isCamChecked}
+                                                                      setCamChecked={setCamChecked}
                                                                       setPointsAdditionState={setPointsAdditionState}/>}>
                     <Route path={":id"}
                            element={<Reports objects={objects}/>}>
@@ -399,7 +403,7 @@ function App() {
                         }/>
                         {/*<Route path={"expendPlugins/chart/*"} element={<RedirectJsRouter/>}/>*/}
                         <Route path={"sheets"} element={<SpreadSheets objects={objects} luckyConfig={luckyConfig} setLuckyConfig={setLuckyConfig}/>}/>
-                        <Route path={"video"} element={<Video/>}/>
+                        <Route path={"video"} element={<Video isCamChecked={isCamChecked} setCamChecked={setCamChecked}/>}/>
                         <Route path={"notifications"} element={<Notifications objects={objects}/>}/>
                         <Route path={"transport/:transportId"} element={<Transport objects={objects}/>}/>
                         <Route path={"transport"} element={<Transports objects={objects}/>}/>
