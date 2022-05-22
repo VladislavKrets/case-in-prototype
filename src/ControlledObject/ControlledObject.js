@@ -27,6 +27,10 @@ export default function ControlledObject(props) {
     const handleObjectsClose = () => setObjectsShow(false);
     const handleObjectsShow = () => setObjectsShow(true);
 
+    const onFileChange = (event) => {
+        props.fileUpload(event.target.files[0]);
+    }
+
     const accordionElement = <Accordion alwaysOpen defaultActiveKey={"0"}>
         <Accordion.Item eventKey="0">
             <Accordion.Header>Транспорт</Accordion.Header>
@@ -115,8 +119,19 @@ export default function ControlledObject(props) {
                 </Accordion.Body>
             </Accordion.Item>
         }
+        {
+            window.location.pathname === `/demo/reports/${id}/sheets` &&
+            <Accordion.Item eventKey="1">
+                <Accordion.Header>Загрузить файл</Accordion.Header>
+                <Accordion.Body>
+                    <Form>
+                        <Form.Label>Загрузите .xlsx файл</Form.Label>
+                        <Form.Control type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={onFileChange}/>
+                    </Form>
+                </Accordion.Body>
+            </Accordion.Item>
+        }
     </Accordion>;
-
     const linksListElement = <>
         <Link to={`/demo/reports/${id}`} className={'link-bar'}>
             <BsInfoCircleFill className={'link-bar-icon'}/>

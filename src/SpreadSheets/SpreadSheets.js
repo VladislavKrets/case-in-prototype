@@ -1,6 +1,7 @@
 import Spreadsheet from "react-spreadsheet";
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router";
+import LuckySheet from "../LuckySheet/LuckySheet";
 
 export default function SpreadSheets(props) {
     let {id} = useParams();
@@ -42,10 +43,11 @@ export default function SpreadSheets(props) {
     return <div style={{
         display: 'flex',
         width: '100%',
+        maxWidth: '100%',
         height: 'calc(100vh - 65px)',
         maxHeight: 'calc(100vh - 65px)',
-        overflow: 'auto'
     }}>
-        <Spreadsheet data={data} readOnly={true} />
+        {/*<Spreadsheet data={data} readOnly={true} />*/}
+        <LuckySheet luckyConfig={props.luckyConfig} setLuckyConfig={props.setLuckyConfig}/>
     </div>
 }

@@ -29,6 +29,8 @@ import Notifications from "./Notifications/Notifications";
 import Transports from "./Transports/Transports";
 import Transport from "./Transport/Transport";
 import ControlledObject from "./ControlledObject/ControlledObject";
+import {useParams} from "react-router";
+import LuckyExcel from 'luckyexcel'
 
 ChartJS.register(
     CategoryScale,
@@ -305,6 +307,41 @@ function App() {
     const [userMapPoints, setUserMapPoints] = useState([]);
     const [isPointsAdditionState, setPointsAdditionState] = useState(false);
 
+    let {id} = useParams();
+
+    const [luckyConfig, setLuckyConfig] = useState({
+        container: "luckysheet",
+        title: 'Данные о транспорте', // set the name of the table
+        plugins: ['chart'],
+        showtoolbar: true,
+        data: [{
+            "name": "Sheet1",
+            color: "",
+            "status": "1",
+            "order": "0",
+            "data": [],
+            "config": {},
+            "index": 0
+        }],
+        myFolderUrl: `/demo/reports/${id}`
+    })
+
+    const fileUpload = (file) => {
+        LuckyExcel.transformExcelToLucky(
+            file,
+            function(exportJson, luckysheetfile){
+                if (exportJson.sheets.length > 0) {
+                    const newLuckyConfig = {...luckyConfig}
+                    const data = [...exportJson.sheets, ...newLuckyConfig.data]
+                    newLuckyConfig.data = data
+                    setLuckyConfig(newLuckyConfig)
+                }
+            },
+            function(err){
+                console.log('Import failed. Is your fail a valid xlsx?');
+            });
+    }
+
     return (
         <Router>
             <Routes>
@@ -313,6 +350,7 @@ function App() {
                                                                       userMapPoints={userMapPoints}
                                                                       setUserMapPoints={setUserMapPoints}
                                                                       isPointsAdditionState={isPointsAdditionState}
+                                                                      fileUpload={fileUpload}
                                                                       setPointsAdditionState={setPointsAdditionState}/>}>
                     <Route path={":id"}
                            element={<Reports objects={objects}/>}>
@@ -322,7 +360,7 @@ function App() {
                                   isPointsAdditionState={isPointsAdditionState}
                                   setPointsAdditionState={setPointsAdditionState}/>
                         }/>
-                        <Route path={"sheets"} element={<SpreadSheets objects={objects}/>}/>
+                        <Route path={"sheets"} element={<SpreadSheets objects={objects} luckyConfig={luckyConfig} setLuckyConfig={setLuckyConfig}/>}/>
                         <Route path={"video"} element={<Video/>}/>
                         <Route path={"notifications"} element={<Notifications objects={objects}/>}/>
                         <Route path={"transport/:transportId"} element={<Transport objects={objects}/>}/>
