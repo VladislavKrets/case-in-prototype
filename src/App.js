@@ -16,7 +16,6 @@ import {
 } from "react-router-dom"
 import './App.css';
 import React, {useEffect, useState} from "react";
-import Graph from "./Graph";
 import Auth from "./Auth/Auth";
 import Demo from "./Demo/Demo";
 import Main from "./Main/Main";
