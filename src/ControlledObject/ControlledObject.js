@@ -211,7 +211,9 @@ export default function ControlledObject(props) {
         </header>
         <div className={'demo-wrapper'}>
             <div className={'desktop-left-bar'}>
-                {linksListElement}
+                <div className={'desktop-left-bar'} style={{position: 'fixed', left: 0, top: 0, height: '100%'}}>
+                    {linksListElement}
+                </div>
             </div>
             {!window.location.pathname.match(/^\/demo\/reports\/\d+$/)
             && !window.location.pathname.match(/^\/demo\/reports\/\d+\/notifications$/)
