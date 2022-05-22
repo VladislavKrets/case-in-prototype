@@ -36,10 +36,27 @@
     display: block;
     padding-bottom: 20px;
 }
+.object-container.transport{
+    padding-right: 100px;
+}
+@media (max-width: 1315px) {
+    .object-container.transport{
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+}
+
+@media (max-width: 1210px) {
+    .object-container.transport{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
 
 @media (max-width: 850px) {
     .object-container.transport{
         width: 100%;
+        padding-right: 0;
     }
     .transport-properties{
         display: block;

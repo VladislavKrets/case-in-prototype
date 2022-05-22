@@ -2,7 +2,9 @@
     height: 300px;
     width: 400px;
 }
-
+.graph-wrapper-imitator{
+    width: 400px;
+}
 .report-wrapper{
     padding: 20px;
     width: 100%;
@@ -21,22 +23,23 @@
     justify-content: space-between;
 }
 
-/*.report-list:last-child::after {*/
-/*    content: "";*/
-/*    flex: auto;*/
-/*}*/
 
 @media (max-width: 1300px) {
     .graph-wrapper {
         height: 400px;
         width: 500px;
     }
-
+    .graph-wrapper-imitator{
+        width: 500px;
+    }
 }
 
 @media (max-width: 1105px) {
     .graph-wrapper {
         height: 300px;
+        width: 400px;
+    }
+    .graph-wrapper-imitator{
         width: 400px;
     }
 }
@@ -46,6 +49,10 @@
         height: 300px;
         width: 370px;
         font-size: 15px;
+    }
+
+    .graph-wrapper-imitator{
+        width: 370px;
     }
 
     .reports-object-title{
