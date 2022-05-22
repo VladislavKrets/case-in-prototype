@@ -14,6 +14,7 @@ import {Accordion, Form, Offcanvas, Toast, ToastContainer} from "react-bootstrap
 import {useParams} from "react-router";
 import {ImTruck} from "react-icons/im/index";
 import {TiDelete} from 'react-icons/ti'
+import {forEach} from "react-bootstrap/ElementChildren";
 
 export default function ControlledObject(props) {
     let navigate = useNavigate();
@@ -75,7 +76,7 @@ export default function ControlledObject(props) {
         {
             window.location.pathname === `/demo/reports/${id}/positions` &&
             <Accordion.Item eventKey="1">
-                <Accordion.Header>Точки</Accordion.Header>
+                <Accordion.Header>Построить маршрут</Accordion.Header>
                 <Accordion.Body>
                     <Form>
                         <div style={{
@@ -90,7 +91,7 @@ export default function ControlledObject(props) {
                             props.setPointsAdditionState(true);
                             handleTransportClose();
                         }}>
-                            <div>Добавить</div>
+                            <div>Добавить точку</div>
                             <IoAddSharp style={{width: '30px', height: '30px', color: '#20305E'}}/>
                         </div>
                         {

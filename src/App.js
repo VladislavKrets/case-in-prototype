@@ -12,7 +12,7 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+    Link, useNavigate
 } from "react-router-dom"
 import './App.css';
 import React, {useEffect, useState} from "react";
@@ -29,8 +29,9 @@ import Notifications from "./Notifications/Notifications";
 import Transports from "./Transports/Transports";
 import Transport from "./Transport/Transport";
 import ControlledObject from "./ControlledObject/ControlledObject";
-import {useParams} from "react-router";
+import {Navigate, useParams} from "react-router";
 import LuckyExcel from 'luckyexcel'
+import RedirectJsRouter from "./RedirectJsRouter";
 
 ChartJS.register(
     CategoryScale,
@@ -360,6 +361,7 @@ function App() {
                                   isPointsAdditionState={isPointsAdditionState}
                                   setPointsAdditionState={setPointsAdditionState}/>
                         }/>
+                        {/*<Route path={"expendPlugins/chart/*"} element={<RedirectJsRouter/>}/>*/}
                         <Route path={"sheets"} element={<SpreadSheets objects={objects} luckyConfig={luckyConfig} setLuckyConfig={setLuckyConfig}/>}/>
                         <Route path={"video"} element={<Video/>}/>
                         <Route path={"notifications"} element={<Notifications objects={objects}/>}/>

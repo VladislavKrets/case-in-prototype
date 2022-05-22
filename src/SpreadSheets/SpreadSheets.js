@@ -2,6 +2,7 @@ import Spreadsheet from "react-spreadsheet";
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import LuckySheet from "../LuckySheet/LuckySheet";
+import RedirectJsRouter from "../RedirectJsRouter";
 
 export default function SpreadSheets(props) {
     let {id} = useParams();
