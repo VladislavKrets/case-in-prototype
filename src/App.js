@@ -32,6 +32,7 @@ import ControlledObject from "./ControlledObject/ControlledObject";
 import {Navigate, useParams} from "react-router";
 import LuckyExcel from 'luckyexcel'
 import RedirectJsRouter from "./RedirectJsRouter";
+import getData from "./TempData"
 
 ChartJS.register(
     CategoryScale,
@@ -42,6 +43,8 @@ ChartJS.register(
     Tooltip,
     Legend
 )
+
+const resultData = getData()
 
 function App() {
 
@@ -327,8 +330,11 @@ function App() {
         myFolderUrl: `/demo/reports/${id}`
     })
 
-    const fileUpload = (file) => {
-        LuckyExcel.transformExcelToLucky(
+    const [isLoading, setLoading] = useState(false)
+    const [isUploaded, setUploaded] = useState(false)
+
+    const fileTranform = async(file) => {
+        await LuckyExcel.transformExcelToLucky(
             file,
             function(exportJson, luckysheetfile){
                 if (exportJson.sheets.length > 0) {
@@ -336,11 +342,38 @@ function App() {
                     const data = [...exportJson.sheets, ...newLuckyConfig.data]
                     newLuckyConfig.data = data
                     setLuckyConfig(newLuckyConfig)
+                    setUploaded(true)
                 }
+                setLoading(false)
             },
             function(err){
                 console.log('Import failed. Is your fail a valid xlsx?');
+                setLoading(false)
             });
+
+    }
+
+    const fileUpload = (file) => {
+        setLoading(true)
+        fileTranform(file).then(() => {
+            console.log("ended")
+        })
+    }
+
+    const getFuelResult = () => {
+        if (!isUploaded) return
+        const newLuckyConfig = {...luckyConfig}
+        const data = [...resultData.fuelData, ...newLuckyConfig.data]
+        newLuckyConfig.data = data
+        setLuckyConfig(newLuckyConfig)
+    }
+
+    const getEnginesResult = () => {
+        if (!isUploaded) return
+        const newLuckyConfig = {...luckyConfig}
+        const data = [...resultData.engineData, ...newLuckyConfig.data]
+        newLuckyConfig.data = data
+        setLuckyConfig(newLuckyConfig)
     }
 
     return (
@@ -349,7 +382,10 @@ function App() {
                 <Route path="login" element={<Auth/>}/>
                 <Route path="demo/reports" element={<ControlledObject objects={objects} setObjects={setObjects}
                                                                       userMapPoints={userMapPoints}
+                                                                      isLoading={isLoading}
                                                                       setUserMapPoints={setUserMapPoints}
+                                                                      getFuelResult={getFuelResult}
+                                                                      getEnginesResult={getEnginesResult}
                                                                       isPointsAdditionState={isPointsAdditionState}
                                                                       fileUpload={fileUpload}
                                                                       setPointsAdditionState={setPointsAdditionState}/>}>
@@ -375,7 +411,6 @@ function App() {
                 <Route path="" element={<Main/>}/>
             </Routes>
         </Router>
-
     );
 }
 

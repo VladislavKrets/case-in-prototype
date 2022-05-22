@@ -10,7 +10,7 @@ import {
 import {IoAddSharp} from "react-icons/io5"
 import React, {useState} from "react";
 import {Link, Outlet, useNavigate} from "react-router-dom";
-import {Accordion, Form, Offcanvas, Toast, ToastContainer, Button} from "react-bootstrap";
+import {Accordion, Form, Offcanvas, Toast, ToastContainer, Button, Spinner} from "react-bootstrap";
 import {useParams} from "react-router";
 import {ImTruck} from "react-icons/im/index";
 import {TiDelete} from 'react-icons/ti'
@@ -146,7 +146,7 @@ export default function ControlledObject(props) {
                                 height: '60px',
                                 wordBreak: 'break-word',
                                 whiteSpace: 'normal'
-                            }}>Прогнозирование расхода топлива</Button>
+                            }} onClick={props.getFuelResult}>Прогнозирование расхода топлива</Button>
                         </div>
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <Button variant="primary" style={{
@@ -155,7 +155,7 @@ export default function ControlledObject(props) {
                                 marginTop: '20px',
                                 wordBreak: 'break-word',
                                 whiteSpace: 'normal'
-                            }}>Прогнозирование расхода двигателя</Button>
+                            }} onClick={props.getEnginesResult}>Прогнозирование расхода двигателя</Button>
                         </div>
                     </Form>
                 </Accordion.Body>
@@ -245,5 +245,19 @@ export default function ControlledObject(props) {
         <div className={'epic-bar'}>
             {linksListElement}
         </div>
+        {
+            props.isLoading && <div style={{
+                position: 'fixed',
+                width: '100%',
+                height: '100%',
+                top: 0,
+                left: 0,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }} onClick={e => e.stopPropagation()}>
+                <Spinner animation="border" variant="primary" style={{width: '100px', height: '100px'}}/>
+            </div>
+        }
     </div>
 }
