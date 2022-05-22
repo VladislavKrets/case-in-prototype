@@ -162,11 +162,11 @@ export default function ControlledObject(props) {
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <Button variant="primary" style={{
                                 width: '250px',
-                                height: '60px',
+                                height: '85px',
                                 marginTop: '20px',
                                 wordBreak: 'break-word',
                                 whiteSpace: 'normal'
-                            }} onClick={props.getEnginesResult}>Прогнозирование расхода двигателя</Button>
+                            }} onClick={props.getEnginesResult}>Определение класса работоспособности двигателя</Button>
                         </div>
                     </Form>
                 </Accordion.Body>
